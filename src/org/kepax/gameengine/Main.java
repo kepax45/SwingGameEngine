@@ -27,7 +27,7 @@ public class Main {
 		te.setBoundingBox(25, 10, 40, 50);
 		te2.setBoundingBox(25, 10, 40, 50);
 		te.setCollection("walking_down");
-		CustomGame cg = new CustomGame("naziv", 800, 600, 60, te, te2);
+		CustomGame cg = new CustomGame("naziv22", 800, 600, 60, te, te2);
 		Tile[] tileSet = Tile.createTileSet("res/tiles.png", 0, 2, 50, 50);
 		tileSet[1].setSolid(true);
 		tileSet[2].setSolid(true);
