@@ -10,7 +10,6 @@ public class CustomGame extends Game{
 	}
 	@Override
 	public void update() {
-		
 		((CustomKeyboard) k).updatePlayerMovement();
 		player.setVelocity(player.getVelocity().getXComponent()*0.9, player.getVelocity().getYComponent()*0.9);
 		if(CollisionChecker.CollidingAABB(player.getBoundingBox(), te.getBoundingBox())) {

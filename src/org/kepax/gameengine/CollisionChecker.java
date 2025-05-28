@@ -53,7 +53,7 @@ public class CollisionChecker {
 
 	            Rectangle B = new Rectangle(tileMap.startX + j * tileSize, tileMap.startY + i * tileSize, tileSize, tileSize);
 
-	            A = entity.getBoundingBox(); // Update after each potential move
+	            A = entity.getBoundingBox();
 
 	            if (CollisionChecker.CollidingAABB(A, B)) {
 	                int pen_width = Math.min(A.x + A.width, B.x + B.width) - Math.max(A.x, B.x);
