@@ -7,7 +7,10 @@ import java.util.Set;
 
 public abstract class Keyboard implements KeyListener {
     protected final Set<Integer> pressedKeys = new HashSet<>();
-
+    Game game;
+    public Keyboard(Game g) {
+    	game = g;
+    }
     @Override
     public final void keyTyped(KeyEvent e) {
     	keysTyped(e);

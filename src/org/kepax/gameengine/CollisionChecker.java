@@ -60,21 +60,24 @@ public class CollisionChecker {
 	                int pen_height = Math.min(A.y + A.height, B.y + B.height) - Math.max(A.y, B.y);
 
 	                if (pen_width <= pen_height) {
+	                	entity.setVelocityXComponent(0);
 	                    if (A.x < B.x)
 	                        entity.setX(entity.getX() - pen_width);
 	                    else
 	                        entity.setX(entity.getX() + pen_width);
 	                } else {
-	                    if (A.y < B.y)
+	                    if (A.y < B.y) {
 	                        entity.setY(entity.getY() - pen_height);
+	                    }
 	                    else
 	                        entity.setY(entity.getY() + pen_height);
+	                    entity.setVelocityYComponent(0);
 	                }
 	            }
 	        }
 	    }
 	}
-	    public static Boolean collidingWithSolid(Entity entity, TileMap tileMap) {
+	public static Boolean collidingWithSolidTile(Entity entity, TileMap tileMap) {
 		    int tileSize = tileMap.tileSize;
 		    Rectangle A = entity.getBoundingBox();
 
@@ -100,5 +103,49 @@ public class CollisionChecker {
 		    }
 		    return false;
 	}
-
+	public static Boolean isAboveSolidTile(Entity entity, TileMap tileMap) {
+		Rectangle r = entity.getBoundingBox();
+		int row = (r.y + r.height) / tileMap.tileSize;
+		int startCol = Math.max(0, r.x / tileMap.tileSize);
+		int endCol = Math.min((r.x + r.width) / tileMap.tileSize, tileMap.width - 1);
+		if(row*tileMap.tileSize != r.y + r.height || row < 0 || row >= tileMap.height) return false;
+		for(int col = startCol; col <= endCol; col++) {
+			if(tileMap.tileSet[tileMap.tileGrid[row][col]].isSolid()) return true;
+		}
+		return false;
+	}
+	public static Boolean isBelowSolidTile(Entity entity, TileMap tileMap) {
+		Rectangle r = entity.getBoundingBox();
+		int row = (r.y) / tileMap.tileSize - 1;
+		int startCol = Math.max(0, r.x / tileMap.tileSize);
+		int endCol = Math.min((r.x + r.width) / tileMap.tileSize, tileMap.width - 1);
+		if((row+1)*tileMap.tileSize != r.y || row < 0 || row >= tileMap.height) return false;
+		System.out.println(row + " " + startCol + " " + endCol);
+		for(int col = startCol; col <= endCol; col++) {
+			if(tileMap.tileSet[tileMap.tileGrid[row][col]].isSolid()) return true;
+		}
+		return false;
+	}
+	public static Boolean isLeftOfSolidTile(Entity entity, TileMap tileMap) {
+		Rectangle r = entity.getBoundingBox();
+		int col = (r.x + r.width) / tileMap.tileSize;
+		int startRow = Math.max(0, r.y / tileMap.tileSize);
+		int endRow = Math.min((r.y + r.height) / tileMap.tileSize, tileMap.height - 1);
+		if(col*tileMap.tileSize != r.x + r.width || col < 0 || col >= tileMap.height) return false;
+		for(int row = startRow; row <= endRow; row++) {
+			if(tileMap.tileSet[tileMap.tileGrid[row][col]].isSolid()) return true;
+		}
+		return false;
+	}
+	public static Boolean isRightOfSolidTile(Entity entity, TileMap tileMap) {
+		Rectangle r = entity.getBoundingBox();
+		int col = (r.x) / tileMap.tileSize - 1;
+		int startRow = Math.max(0, r.y / tileMap.tileSize);
+		int endRow = Math.min((r.y + r.height) / tileMap.tileSize, tileMap.height - 1);
+		if((col+1)*tileMap.tileSize != r.x || col < 0 || col >= tileMap.width) return false;
+		for(int row = startRow; row <= endRow; row++) {
+			if(tileMap.tileSet[tileMap.tileGrid[row][col]].isSolid()) return true;
+		}
+		return false;
+	}
 }
