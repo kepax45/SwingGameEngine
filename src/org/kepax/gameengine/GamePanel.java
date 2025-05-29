@@ -16,11 +16,11 @@ public class GamePanel extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		if(game.currentTileMap != null)
-			game.currentTileMap.drawTileMap(g, camera);
+		if(game.sceneManager.getScene().tileMap != null)
+			game.sceneManager.getScene().tileMap.drawTileMap(g, camera);
 		if(game.drawHitboxes)
 			Entity.drawHitboxes(g, camera);
-		Entity.drawEntities(g, camera);
+		game.sceneManager.getScene().drawEntities(g, camera);
 		
 	}
 }

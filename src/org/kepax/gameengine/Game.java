@@ -8,17 +8,16 @@ public class Game {
 	long frames;
 	int width;
 	int height;
-	TileMap currentTileMap;
 	Camera c;
 	String title;
 	Keyboard k;
 	boolean drawHitboxes;
+	SceneManager sceneManager;
 	public Game(String title, int width, int height, int framerate) {
 		drawHitboxes = false;
 		this.width = width;
 		this.height = height;
 		this.title = title;
-		this.currentTileMap = null;
 		FrameRate = framerate;
 		lastFrameTime = System.currentTimeMillis();
 		timeBetweenFrames = 1000 / FrameRate;
@@ -26,13 +25,11 @@ public class Game {
 		c = new Camera(width, height);
 		w = new Window(width, height, title, c, this);
 		w.setVisible(false);
+		sceneManager = new SceneManager();
 	}
 	public Game(String title, int width, int height, int framerate, Keyboard k) {
 		new Game(title, width, height, framerate);
 		setKeyboard(k);
-	}
-	public void setTileMap(TileMap t) {
-		currentTileMap = t;
 	}
 	public void start() {
 		w.setVisible(true);
@@ -43,7 +40,7 @@ public class Game {
 			if(elapsedTime >= timeBetweenFrames) {
 				lastFrameTime = System.currentTimeMillis();
 				frames++;
-				Entity.updateEntityPositions();
+				sceneManager.getScene().updateEntityPositions();
 				TexturedEntity.updateAnimations();
 				update();
 				w.repaint();

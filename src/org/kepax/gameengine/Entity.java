@@ -18,11 +18,6 @@ abstract public class Entity {
 		list.add(this);
 		boundingBox = new Rectangle(0, 0, 0, 0);
 	}
-	public static void updateEntityPositions() {
-		for(Entity e : list) {
-			e.move();
-		}
-	}
 	public static void drawHitboxes(Graphics g, Camera c) {
 		Rectangle tmp;
 		for(Entity e : list) {
@@ -30,11 +25,7 @@ abstract public class Entity {
 			g.drawRect(tmp.x - c.x, tmp.y - c.y, tmp.width, tmp.height);
 		}
 	}
-	public static void drawEntities(Graphics g, Camera c) {
-		for(Entity e : list) {
-			e.draw(g, c);
-		}
-	}
+	
 	public void setX(double x) {
 		this.x = x;
 	}
@@ -62,7 +53,7 @@ abstract public class Entity {
 	public Rectangle getBoundingBox() {
 		return new Rectangle((int) (x + boundingBox.x), (int) (y + boundingBox.y), boundingBox.width, boundingBox.height);
 	}
-	private void move() {
+	void move() {
 		this.setX(this.getX() + this.velocity.getXComponent());
 		this.setY(this.getY() + this.velocity.getYComponent());
 	}

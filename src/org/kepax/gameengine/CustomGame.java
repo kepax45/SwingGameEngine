@@ -17,8 +17,8 @@ public class CustomGame extends Game{
 			CollisionChecker.resolveCollisionMTV(player, te);
 			player.setVelocity(player.getVelocity().getXComponent()*0.9, player.getVelocity().getYComponent()*0.9);
 		}
-		CollisionChecker.resolveTileCollision(player, currentTileMap);
-		CollisionChecker.resolveTileCollision(te, currentTileMap);
+		CollisionChecker.resolveTileCollision(player, sceneManager.getScene().tileMap);
+		CollisionChecker.resolveTileCollision(te, sceneManager.getScene().tileMap);
 		c.follow(player);
 	}
 }
