@@ -8,8 +8,16 @@ public class CustomGame extends Game{
 	}
 	@Override
 	public void update() {
-		player.setVelocityYComponent(player.getVelocity().getYComponent() + 0.2);
-		CollisionChecker.resolveTileCollision(player, this.sceneManager.getScene().tileMap);
+		((CustomKeyboard) k).updatePlayerMovement();
+		player.setVelocityYComponent(player.getVelocity().getYComponent() + 0.5);
+		if(CollisionChecker.collidingWithSolid(player, sceneManager.getScene().tileMap)) {
+			CollisionChecker.resolveTileCollision(player, sceneManager.getScene().tileMap);
+			if(player.getVelocity().getYComponent() > 0) {
+				player.getVelocity().setYComponent(0);
+			}
+		}
+		player.setVelocityXComponent(player.getVelocity().getXComponent()*0.9);
+		
 		c.follow(player);
 	}
 }

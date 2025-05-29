@@ -36,7 +36,7 @@ public class Main {
 		CustomGame cg = new CustomGame("naziv22", 800, 600, 60, player);
 		cg.drawHitboxes = true;
 		cg.sceneManager.setScene(sc);
-		
+		cg.setKeyboard(new CustomKeyboard(player));
 		cg.start();
 	}
 }

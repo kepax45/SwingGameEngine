@@ -74,5 +74,31 @@ public class CollisionChecker {
 	        }
 	    }
 	}
+	    public static Boolean collidingWithSolid(Entity entity, TileMap tileMap) {
+		    int tileSize = tileMap.tileSize;
+		    Rectangle A = entity.getBoundingBox();
+
+		    int startCol = (A.x - tileMap.startX) / tileSize;
+		    int startRow = (A.y - tileMap.startY) / tileSize;
+		    int endCol = (A.x + A.width - tileMap.startX) / tileSize;
+		    int endRow = (A.y + A.height - tileMap.startY) / tileSize;
+
+		    for (int i = Math.max(startRow, 0); i <= Math.min(tileMap.height - 1, endRow); i++) {
+		        for (int j = Math.max(startCol, 0); j <= Math.min(tileMap.width - 1, endCol); j++) {
+
+		            Tile tile = tileMap.tileSet[tileMap.tileGrid[i][j]];
+		            if (tile == null || !tile.isSolid()) continue;
+
+		            Rectangle B = new Rectangle(tileMap.startX + j * tileSize, tileMap.startY + i * tileSize, tileSize, tileSize);
+
+		            A = entity.getBoundingBox();
+
+		            if (CollisionChecker.CollidingAABB(A, B)) {
+		                return true;
+		            }
+		        }
+		    }
+		    return false;
+	}
 
 }
