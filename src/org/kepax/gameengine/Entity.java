@@ -7,7 +7,6 @@ import java.util.List;
 
 
 abstract public class Entity {
-	public static List<Entity> list = new ArrayList<Entity>();
 	private int ID;
 	private double x, y, width, height;
 	Rectangle boundingBox;
@@ -15,17 +14,8 @@ abstract public class Entity {
 	protected Entity() {
 		//if(list == null) list = new ArrayList<Entity>();
 		velocity = new Vector2D(0, 0);
-		list.add(this);
 		boundingBox = new Rectangle(0, 0, 0, 0);
 	}
-	public static void drawHitboxes(Graphics g, Camera c) {
-		Rectangle tmp;
-		for(Entity e : list) {
-			tmp = e.getBoundingBox();
-			g.drawRect(tmp.x - c.x, tmp.y - c.y, tmp.width, tmp.height);
-		}
-	}
-	
 	public void setX(double x) {
 		this.x = x;
 	}

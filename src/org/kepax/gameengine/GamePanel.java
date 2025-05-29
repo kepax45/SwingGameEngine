@@ -19,7 +19,7 @@ public class GamePanel extends JPanel {
 		if(game.sceneManager.getScene().tileMap != null)
 			game.sceneManager.getScene().tileMap.drawTileMap(g, camera);
 		if(game.drawHitboxes)
-			Entity.drawHitboxes(g, camera);
+			game.sceneManager.getScene().drawHitboxes(g, camera);
 		game.sceneManager.getScene().drawEntities(g, camera);
 		
 	}

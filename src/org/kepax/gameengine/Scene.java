@@ -38,5 +38,14 @@ public abstract class Scene {
 			g.drawRect(tmp.x - c.x, tmp.y - c.y, tmp.width, tmp.height);
 		}
 	}
-	
+	void updateAnimations() {
+		for(Entity e : entities) {
+			if(e instanceof TexturedEntity ) {
+				TexturedEntity te = (TexturedEntity) e;
+				if(System.currentTimeMillis() - te.collection.lastUpdateMillis > te.switchTime * 1000) {
+					te.collection.update();
+				}
+			}
+		}
+	}
 }

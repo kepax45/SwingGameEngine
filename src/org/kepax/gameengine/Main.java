@@ -19,29 +19,24 @@ public class Main {
 		AnimationMap.getAnimationCollection("idle_left").scale(3);
 		AnimationMap.getAnimationCollection("idle_right").scale(3);
 		AnimationMap.getAnimationCollection("idle_down").scale(3);
-		TexturedEntity te = new TexturedEntity(0.1);
-		TexturedEntity te2 = new TexturedEntity(0.1);
+		TexturedEntity player = new TexturedEntity(0.1);
+		player.setX(100);
+		player.setY(0);
+		player.setCollection("idle_right");
 		Scene sc = new Scene() {
 			@Override
 			public void initialize() {
-				te2.setCollection("idle_right");
-				te2.setX(-100);
-				te2.setY(-100);
-				te.setBoundingBox(25, 10, 40, 50);
-				te2.setBoundingBox(25, 10, 40, 50);
-				te.setCollection("walking_down");
-				Tile[] tileSet = Tile.createTileSet("res/tiles.png", 0, 2, 50, 50);
-				tileSet[1].setSolid(true);
-				tileSet[2].setSolid(true);
-				addEntity(te);
-				addEntity(te2);
-				setTileMap(TileMap.loadTileMap("res/mapa.txt", tileSet, 50, -500, -500));
+				Tile[] tileSet = Tile.createTileSet("res/tiles.png", 0, 3, 50, 50);
+				tileSet[0].setSolid(true);
+				this.tileMap = TileMap.loadTileMap("res/mapa.txt", tileSet, 50, 0, 0);
+				player.setBoundingBox(30, 10, 40, 50);
+				addEntity(player);
 			}
 		};
-		CustomGame cg = new CustomGame("naziv22", 800, 600, 60, te, te2);
-		cg.sceneManager.setScene(sc);
+		CustomGame cg = new CustomGame("naziv22", 800, 600, 60, player);
 		cg.drawHitboxes = true;
-		cg.setKeyboard(new CustomKeyboard(te));
+		cg.sceneManager.setScene(sc);
+		
 		cg.start();
 	}
 }

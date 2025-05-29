@@ -41,7 +41,7 @@ public class Game {
 				lastFrameTime = System.currentTimeMillis();
 				frames++;
 				sceneManager.getScene().updateEntityPositions();
-				TexturedEntity.updateAnimations();
+				sceneManager.getScene().updateAnimations();
 				update();
 				w.repaint();
 				
