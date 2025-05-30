@@ -21,7 +21,7 @@ public class Main {
 		AnimationMap.getAnimationCollection("idle_down").scale(3);
 		TexturedEntity player = new TexturedEntity(0.1);
 		player.setX(100);
-		player.setY(0);
+		player.setY(500);
 		player.setCollection("idle_right");
 		Scene sc = new Scene() {
 			@Override
