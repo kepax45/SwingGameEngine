@@ -6,9 +6,9 @@ import java.awt.FlowLayout;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 import org.kepax.gameengine.Entity;
 import org.kepax.gameengine.Game;
@@ -28,8 +28,19 @@ public class LevelEditorGame extends Game {
 	@Override
 	public void initialization() {
 	    JMenuBar menuBar = new JMenuBar();
+	    
 	    JMenu fileMenu = new JMenu("File");
+	    
+	    JMenuItem saveItem = new JMenuItem("Save");
+	    
+	    JMenuItem newItem = new JMenuItem("New");
+	    
+	    fileMenu.add(newItem);
+	    		
+	    fileMenu.add(saveItem);
+	    
 	    menuBar.add(fileMenu);
+	    
 	    w.setJMenuBar(menuBar);
 
 	    w.panel.setLayout(new BorderLayout());
@@ -49,7 +60,7 @@ public class LevelEditorGame extends Game {
 	    topRightPanel.add(xPosArea);
 	    topRightPanel.add(new JLabel("Y:"));
 	    topRightPanel.add(yPosArea);
-
+	    
 	    w.panel.add(topRightPanel, BorderLayout.NORTH);
 	    w.setResizable(false);
 	}

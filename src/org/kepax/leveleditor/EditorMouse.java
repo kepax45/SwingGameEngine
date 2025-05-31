@@ -26,12 +26,8 @@ public class EditorMouse extends Mouse {
 	@Override
 	protected void mouseButtonPressed(MouseEvent e) {
 		//System.out.println("pressed");
-		if(!firstLog) {
-			firstLog = true;
-			startX = (int) (lg.camEntity.getX() + e.getX() - game.width / 2);
-			startY = (int) (lg.camEntity.getY() + e.getY() - game.height / 2);
-			
-		}
+		startX = e.getX();
+		startY = e.getY();
 	}
 
 	@Override
@@ -42,12 +38,13 @@ public class EditorMouse extends Mouse {
 	}
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		int distX = (int) (startX - lg.camEntity.getX());
-		int distY = (int) (startY - lg.camEntity.getY());
-		lg.camEntity.setX(lg.camEntity.getX() + distX);
-		lg.camEntity.setY(lg.camEntity.getY() + distX);
-		startX = (int) (lg.camEntity.getX() + e.getX() - game.width / 2);
-		startY = (int) (lg.camEntity.getY() + e.getY() - game.height / 2);
+		distX = e.getX() - startX;
+		distY = e.getY() - startY;
+		startY = e.getY();
+		startX = e.getX();
+		lg.camEntity.setX(lg.camEntity.getX() - distX);
+		lg.camEntity.setY(lg.camEntity.getY() - distY);
+		
 	}
 
 }
