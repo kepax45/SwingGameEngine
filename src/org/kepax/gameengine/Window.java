@@ -7,7 +7,7 @@ import javax.swing.*;
 public class Window extends JFrame {
 	private int width, height;
 	private String title;
-	private GamePanel panel;
+	public GamePanel panel;
 	public Window(int width, int height, String title, Camera c, Game g) {
 		this.width = width;
 		this.height = height;
@@ -26,6 +26,10 @@ public class Window extends JFrame {
 	}
 	public void setKeyboard(Keyboard k) {
 		this.addKeyListener(k);
+	}
+	public void setMouse(Mouse m) {
+		this.addMouseListener(m);
+		this.addMouseMotionListener(m);
 	}
 	
 }

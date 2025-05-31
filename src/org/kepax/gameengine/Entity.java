@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-abstract public class Entity {
+public class Entity {
 	private int ID;
 	private double x, y, width, height;
 	Rectangle boundingBox;
 	private Vector2D velocity;
-	protected Entity() {
+	public Entity() {
 		//if(list == null) list = new ArrayList<Entity>();
 		velocity = new Vector2D(0, 0);
 		boundingBox = new Rectangle(0, 0, 0, 0);
@@ -23,7 +23,8 @@ abstract public class Entity {
 	public Vector2D getVelocity() {
 		return velocity;
 	}
-	public abstract void draw(Graphics g, Camera c);
+	public void draw(Graphics g, Camera c) {
+	}
 	
 	public void setY(double y) {
 		this.y = y;

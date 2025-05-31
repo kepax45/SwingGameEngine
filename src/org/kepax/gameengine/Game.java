@@ -1,18 +1,25 @@
 package org.kepax.gameengine;
 
 public class Game {
-	Window w;
+	public Window w;
 	long FrameRate;
 	long lastFrameTime;
 	long timeBetweenFrames;
 	long frames;
-	int width;
-	int height;
-	Camera c;
+	public int width;
+	public int height;
+	protected Camera c;
 	String title;
 	Keyboard k;
 	boolean drawHitboxes;
-	SceneManager sceneManager;
+	protected SceneManager sceneManager;
+	protected Mouse m;
+	public SceneManager getSceneManager() {
+		return sceneManager;
+	}
+	protected Window getWindow() {
+		return w;
+	}
 	public Game(String title, int width, int height, int framerate) {
 		drawHitboxes = false;
 		this.width = width;
@@ -25,15 +32,16 @@ public class Game {
 		c = new Camera(width, height);
 		w = new Window(width, height, title, c, this);
 		w.setVisible(false);
-		sceneManager = new SceneManager();
+		sceneManager = new SceneManager(null, this);
 	}
 	public Game(String title, int width, int height, int framerate, Keyboard k) {
 		new Game(title, width, height, framerate);
 		setKeyboard(k);
 	}
 	public void start() {
-		w.setVisible(true);
+		
 		initialization();
+		w.setVisible(true);
 		while(w.isEnabled()) {
 			long currentFrameTime = System.currentTimeMillis();
 			long elapsedTime = currentFrameTime - lastFrameTime;
@@ -57,6 +65,10 @@ public class Game {
 	public void setKeyboard(Keyboard k) {
 		this.k = k;
 		w.setKeyboard(k);
+	}
+	public void setMouse(Mouse m) {
+		this.m = m;
+		w.setMouse(m);
 	}
 	public void update() {
 	}

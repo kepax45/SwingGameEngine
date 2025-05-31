@@ -33,7 +33,7 @@ public class Main {
 				addEntity(player);
 			}
 		};
-		CustomGame cg = new CustomGame("naziv22", 1920, 1080, 60, player);
+		CustomGame cg = new CustomGame("naziv22", 1366, 768, 60, player);
 		cg.drawHitboxes = true;
 		cg.sceneManager.setScene(sc);
 		cg.setKeyboard(new CustomKeyboard(cg, player));
